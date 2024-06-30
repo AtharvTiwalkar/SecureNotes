@@ -1,18 +1,20 @@
-import mongoose from 'mongoose';
+const { default: mongoose } = require("mongoose");//SyntaxError: Cannot use import statement outside a module
+
+
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
     name:{
-        type:string,
+        type:String,
         reqired:true
     },
     email:{
-        type:string,
+        type:String,
         required:true,
         unique:true
     },
     password:{
-        type:string,
+        type:String,
         required:true
     },
     date:{
@@ -22,4 +24,4 @@ const UserSchema = new Schema({
 
 });
 
-modules.exports=mongoose.model('user',UserSchema)
+module.exports=mongoose.model('user',UserSchema)
