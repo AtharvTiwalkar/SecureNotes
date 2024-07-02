@@ -10,7 +10,9 @@ const {body,validationResult}= require("express-validator");
 router.post('/createuser',[//try to use post get is not secure
     body('name').isLength({min:5}),
     body('email').isEmail(),
-    body('password').isLength({min:5})],(req,res)=>{
+    body('password').isLength({min:5})],
+    
+    async (req,res)=>{
     const errors=validationResult(req);
 
     //If there are errors return bad requests 
@@ -19,21 +21,29 @@ router.post('/createuser',[//try to use post get is not secure
     }
 
     //Check for the duplicate email
-
-    let user=User.findOne({email:req.body.email});
+    //always use try catch we never what can happen 
+    try{
+    let user=await User.findOne({email:req.body.email});
+    
     if(user){
         return res.status(400).json({error:"Sorry user with this email is already exists"})
-    } 
-    user=User.create({
+    }
+    //create new user 
+    user=await User.create({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
       })
-        .then((user) => res.json(user))
-        .catch((err) => {
-          console.log(err);
-          res.json({ error: "Enter a unique value", message: err.message });
-    });
+
+    }catch(error){
+      console.error(error.message);
+      res.status(500).json({error:"Some error occured "})
+    }
+    //     .then((user) => res.json(user))
+    //     .catch((err) => {
+    //       console.log(err);
+    //       res.json({ error: "Enter a unique value", message: err.message });
+    // });
 
     // const user= new  User(req.body);
     // obj={    
@@ -47,6 +57,7 @@ router.post('/createuser',[//try to use post get is not secure
     // res.send(req.body)
     
     // res.json([]);
+    
 })
 
 module.exports=router
