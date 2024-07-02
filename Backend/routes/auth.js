@@ -5,19 +5,26 @@ const {body,validationResult}= require("express-validator");
 
 
 
-//Creat user using: POST "/api/auth/". Doesn't require Auth 
+//Creat user using: POST "/api/auth/createuser". No login require
 
-router.post('/',[//try to use post get is not secure
+router.post('/createuser',[//try to use post get is not secure
     body('name').isLength({min:5}),
     body('email').isEmail(),
     body('password').isLength({min:5})],(req,res)=>{
     const errors=validationResult(req);
 
+    //If there are errors return bad requests 
     if(!errors.isEmpty()){
       return res.status(400).json({errors:errors.array()});
     }
 
-    User.create({
+    //Check for the duplicate email
+
+    let user=User.findOne({email:req.body.email});
+    if(user){
+        return res.status(400).json({error:"Sorry user with this email is already exists"})
+    } 
+    user=User.create({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
@@ -27,7 +34,7 @@ router.post('/',[//try to use post get is not secure
           console.log(err);
           res.json({ error: "Enter a unique value", message: err.message });
     });
-    
+
     // const user= new  User(req.body);
     // obj={    
     //     name:"atharv"
