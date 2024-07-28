@@ -10,7 +10,7 @@ function Noteitem(props) {
       <div className="card my-3">
         <div className="card-body">
           <div className="d-flex">
-            <h5 className="card-title">{note.title}</h5>
+            <p><b>Title:</b>{note.title}</p>
             <i className="fa-solid fa-trash-can my-1 mx-3" onClick={() => {
               deleteNote(note._id);
               props.showAlert("Deleted successfully", "success");
@@ -21,7 +21,12 @@ function Noteitem(props) {
           </div>
 
           <p className="card-text">
+            <b>Description :</b>
             {note.description}
+          </p>
+          <p>
+            <b>Tag :</b>
+            {note.tag}
           </p>
         </div>
       </div>

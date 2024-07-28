@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
-import AddNote from "./AddNote";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Notes = (props) => {
@@ -44,9 +43,7 @@ const Notes = (props) => {
 
   return (
     <>
-      <AddNote showAlert={props.showAlert} />
-
-
+      
       <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
       </button>
@@ -55,7 +52,7 @@ const Notes = (props) => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Your Note</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
