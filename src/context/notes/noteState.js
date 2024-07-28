@@ -18,18 +18,18 @@ const NoteState = (props) => {
   // }
   const notesInitial = [];
   const [notes, setNotes] = useState(notesInitial);
-  
+
   //Get all Notes
-  const getNotes= async () => {
+  const getNotes = async () => {
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4NWE0ZThkYWI2NDMxNTk5OGNiMmExIn0sImlhdCI6MTcyMDEyMzgxMH0.0VuJ1aoVpIr9dmGy8EmJOBNxlkK0PVhewmYU3XQJmGg",
+          localStorage.getItem('token'),
       },
     });
-    const json=await response.json();
+    const json = await response.json();
     console.log(json);
     setNotes(json);
   };
@@ -40,35 +40,27 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4NWE0ZThkYWI2NDMxNTk5OGNiMmExIn0sImlhdCI6MTcyMDEyMzgxMH0.0VuJ1aoVpIr9dmGy8EmJOBNxlkK0PVhewmYU3XQJmGg",
+          localStorage.getItem('token'),//hardcoding of the auth token is not proper way use local storage 
       },
       body: JSON.stringify({ title, description, tag }),
       //note: if something come->not a function error etc their may be chance of syntax error
     });
-    const json = response.json();
-    const note = {
-      _id: "66871f5b2c61a42c8281ac0d3",
-      user: "6685a4e8dab64315998cb2a1",
-      title: title,
-      description: description,
-      tag: "now or never",
-      date: "2024-07-04T22:16:59.642Z",
-      __v: 0,
-    };
+    const note = await response.json();
+
     setNotes(notes.concat(note));
   };
 
   //Delete a Note
-  const deleteNote = async(_id) => {
+  const deleteNote = async (_id) => {
     //API calls
     const response = await fetch(`${host}/api/notes/deletenote/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4NWE0ZThkYWI2NDMxNTk5OGNiMmExIn0sImlhdCI6MTcyMDEyMzgxMH0.0VuJ1aoVpIr9dmGy8EmJOBNxlkK0PVhewmYU3XQJmGg",
+          localStorage.getItem('token'),
       },
-      
+
     });
     console.log("deleting the note with id" + _id);
     const newNote = notes.filter((note) => {
@@ -86,15 +78,15 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4NWE0ZThkYWI2NDMxNTk5OGNiMmExIn0sImlhdCI6MTcyMDEyMzgxMH0.0VuJ1aoVpIr9dmGy8EmJOBNxlkK0PVhewmYU3XQJmGg",
+          localStorage.getItem('token'),
       },
       body: JSON.stringify({ title, description, tag }),
     });
 
     //logic to edit at client
-    let newNotes=JSON.parse(JSON.stringify(notes));
+    let newNotes = JSON.parse(JSON.stringify(notes));
     for (let index = 0; index < newNotes.length; index++) {
-      
+
       if (newNotes[index]._id === id) {
         newNotes[index].title = title;
         newNotes[index].description = description;
@@ -106,7 +98,7 @@ const NoteState = (props) => {
   };
   return (
     <NoteContext.Provider
-      value={{ notes, addNote, deleteNote,getNotes,editNote }} /*value={{state,update}}*/
+      value={{ notes, addNote, deleteNote, getNotes, editNote }} /*value={{state,update}}*/
     >
       {props.children}
     </NoteContext.Provider>
