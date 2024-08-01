@@ -2,7 +2,7 @@ import "./App.css";
 import About from "./components/About";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoteState from "./context/notes/noteState";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <NoteState>
-        <HashRouter>
+        <BrowserRouter>
           <Navbar />
           <Alert alert={alert}/>
           <div className="container">
@@ -38,7 +38,7 @@ function App() {
               <Route exact path="/signup" element={<SignUp showAlert={showAlert} />} ></Route>
             </Routes>
           </div>
-        </HashRouter>
+        </BrowserRouter>
       </NoteState>
     </>
   );
