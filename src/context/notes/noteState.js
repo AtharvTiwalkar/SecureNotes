@@ -19,6 +19,7 @@ const NoteState = (props) => {
   const notesInitial = [];
   const [notes, setNotes] = useState(notesInitial);
 
+
   //Get all Notes
   const getNotes = async () => {
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
@@ -42,6 +43,7 @@ const NoteState = (props) => {
         "auth-token":
           localStorage.getItem('token'),//hardcoding of the auth token is not proper way use local storage 
       },
+      
       body: JSON.stringify({ title, description, tag }),
       //note: if something come->not a function error etc their may be chance of syntax error
     });

@@ -82,16 +82,16 @@ const Notes = (props) => {
       </div>
       <div className="row my-3">
         <div className="container">
-          {notes.length === 0 && "No notes to display"}
+          {notes.length == 0 && "No notes to display"}
         </div>
         {
           notes.map((note) => {
-            return <Noteitem key={note._id} note={note} showAlert={props.showAlert} updateNote={updateNote} /> /*note.title*/;
+            return <Noteitem key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert}/> /*note.title*/;
           })
         }
-        {/* sometime try to clear the cache of the browser if getting errro */}
-      </div>
 
+      </div>
+     
 
     </>
   );
