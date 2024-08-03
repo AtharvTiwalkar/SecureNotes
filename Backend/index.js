@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const cors=require('cors');
 app.use(cors());
-const port = 5000//changed to 5000 since we are using 3000 port for the react app 
+const port =process.env.PORT || 5000; //changed to 5000 since we are using 3000 port for the react app 
 app.use(express.json())//use to deal with json  
 
 //Available ports
