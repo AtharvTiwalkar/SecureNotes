@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NoteContext from "./noteContext";
 //import { useState } from "react";
-const host = "http://localhost:5000";
+const host = "https://inotebook-frontend-backend-5.onrender.com";
 const NoteState = (props) => {
   // const s1={
   //     "name":"Atharv",
