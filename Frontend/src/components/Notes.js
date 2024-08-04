@@ -82,7 +82,7 @@ const Notes = (props) => {
       </div>
       <div className="row my-3">
         <div className="container">
-          {notes.length == 0 && "No notes to display"}
+          {notes.length === 0 && "No notes to display"}
         </div>
         {
           notes.map((note) => {

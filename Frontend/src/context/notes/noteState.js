@@ -64,6 +64,7 @@ const NoteState = (props) => {
       },
 
     });
+    console.log(response);
     console.log("deleting the note with id" + _id);
     const newNote = notes.filter((note) => {
       return note._id !== _id;
@@ -84,6 +85,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
+    console.log(response);
 
     //logic to edit at client
     let newNotes = JSON.parse(JSON.stringify(notes));
