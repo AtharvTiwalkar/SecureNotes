@@ -48,32 +48,32 @@ const Notes = (props) => {
         Launch demo modal
       </button>
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
+          <div className="modal-content  bg-custom-purple text-white">
+            <div className="modal-header border-dark">
               <h1 className="modal-title fs-5" id="exampleModalLabel">Your Note</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <div className="container">
                 <form>
-                  <div className="mb-3">
+                  <div className="mb-3 ">
                     <label htmlFor="title" className="form-label" minLength={5} required>Title</label>
-                    <input type="text" className="form-control" id="title" value={note.title} name="title" onChange={onChange}   />
+                    <input type="text" className="form-control border-dark bg-custom-purple   "  id="title" value={note.title} name="title" onChange={onChange}   />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="description" className="form-label" minLength={5} required>Description</label>
-                    <input type="text" className="form-control" id="description" value={note.description} name="description" onChange={onChange}   />
+                    <input type="text" className="form-control border-dark bg-custom-purple  "  id="description" value={note.description} name="description" onChange={onChange}   />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="tag" value={note.tag} className="form-label">Tag</label>
-                    <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange} />
+                    <input type="text" className="form-control border-dark bg-custom-purple  "  id="tag" name="tag" value={note.tag} onChange={onChange} />
                   </div>
                 </form>
               </div>
             </div>
-            <div className="modal-footer">
+            <div className="modal-footer border-dark ">
               <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" disabled={note.title.length<5||note.description.length<5} onClick={handleClick} className="btn btn-primary">Update Notes</button>
             </div>

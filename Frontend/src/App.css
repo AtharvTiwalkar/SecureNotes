@@ -41,3 +41,21 @@
 i{
   cursor:pointer;
 }
+
+
+.bg-custom-purple {
+  background:  #941cc0;
+}
+
+
+
+.bg-custom-orange {
+  background-color: #fed7aa; /* This is the color value for $orange-200 */
+}
+
+.bg-custom-rose{
+  background-color: #ee8385;
+}
+
+
+
