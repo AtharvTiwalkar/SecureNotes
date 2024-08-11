@@ -26,15 +26,15 @@ const AddNote = (props) => {
       <form>
         <div className="mb-3 ">
           <label htmlFor="title" className="form-label" >Title</label>
-          <input type="text" className="form-control bg-custom-orange border-dark" id="title" name="title" onChange={onChange} value={note.title} />
+          <input type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="title" name="title" onChange={onChange} value={note.title} />
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label" >Description</label>
-          <input type="text" className="form-control bg-custom-orange border-dark" id="description" name="description" onChange={onChange} value={note.description}  />
+          <input type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="description" name="description" onChange={onChange} value={note.description}  />
         </div>
         <div className="mb-3">
           <label htmlFor="tag" className="form-label">Tag</label>
-          <input type="text" className="form-control bg-custom-orange border-dark" id="tag" name="tag" onChange={onChange} value={note.tag}/>
+          <input type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="tag" name="tag" onChange={onChange} value={note.tag}/>
         </div>
 
         <button type="submit" disabled={note.title.length<5||note.description.length<5} className="btn btn-primary" onClick={handleClick}>Add Note</button>

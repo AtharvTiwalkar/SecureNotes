@@ -50,7 +50,7 @@ const Notes = (props) => {
 
       <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content  bg-custom-purple text-white">
+          <div className="modal-content  bg-custom-purple text-dark">
             <div className="modal-header border-dark">
               <h1 className="modal-title fs-5" id="exampleModalLabel">Your Note</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -40,12 +40,12 @@ const Login = (props) => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control bg-custom-orange border-dark" id="email" name="email" onChange={onChange} aria-describedby="emailHelp" minLength={1} required />
+                    <input type="email" autocomplete="off" className="form-control bg-custom-orange border-dark" id="email" name="email" onChange={onChange} aria-describedby="emailHelp" minLength={1} required />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                </div>
+                </div>                
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" name="password" onChange={onChange} value={credentials.password} className="form-control bg-custom-orange border-dark" id="exampleInputPassword1" />
+                    <input type="password" autocomplete="off" name="password" onChange={onChange} value={credentials.password} className="form-control bg-custom-orange border-dark" id="exampleInputPassword1" />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
 
