@@ -11,7 +11,7 @@ const JWT_SECRET ="Atharv-secret"
 
 router.post('/createuser',[//try to use post get is not secure
 
-    body('name').isLength({min:5}),
+    body('name').isLength({min:1}),
     body('email').isEmail(),
     body('password').isLength({min:5})],
     

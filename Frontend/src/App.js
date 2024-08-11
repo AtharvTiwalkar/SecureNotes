@@ -22,6 +22,7 @@ function App() {
       setAlert(null);
     }, 2000)
   }
+  document.body.style.backgroundColor='#faddbb';
 
 
   return (
@@ -33,8 +34,9 @@ function App() {
             <Alert alert={alert} />
             <div className="container">
               <Routes>
-                <Route exact path="/" element={<Home showAlert={showAlert} />} > </Route>
-                <Route exact path="/YourNotes" element={<Notes showAlert={showAlert} />} > </Route>
+                
+                <Route exact path="/" element={<Notes showAlert={showAlert} />} > </Route>
+                <Route exact path="/AddNote" element={<Home showAlert={showAlert} />} > </Route>
                 <Route exact path="/about" element={<About />} />
                 <Route exact path="/login" element={<Login showAlert={showAlert} />} />
                 <Route exact path="/signup" element={<SignUp showAlert={showAlert} />} ></Route>

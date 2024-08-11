@@ -50,6 +50,7 @@ const SignUp = (props) => {
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
           <input type="password" autocomplete="off" className="form-control bg-custom-orange border-dark" name="password" onChange={onChange} id="password" minLength={5} required />
+          <div id="emailHelp" className="form-text">Password should be of 5 character and try to keep it strong.</div>
         </div>
         <div className="mb-3">
           <label htmlFor="cpassword" className="form-label">Confirm Password</label>

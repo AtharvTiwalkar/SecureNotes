@@ -46,7 +46,9 @@ const Login = (props) => {
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input type="password" autocomplete="off" name="password" onChange={onChange} value={credentials.password} className="form-control bg-custom-orange border-dark" id="exampleInputPassword1" />
+                    <div id="emailHelp" className="form-text">Signup before login.</div>
                 </div>
+            
                 <button type="submit" className="btn btn-primary">Submit</button>
 
             </form>

@@ -6,19 +6,19 @@ import { useNavigate } from "react-router-dom";
 const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
-  let navigate=useNavigate();
+  let navigate = useNavigate();
 
-  
+
   useEffect(() => {
-    
-    if(localStorage.getItem('token')){
+
+    if (localStorage.getItem('token')) {
       getNotes()
-    }else{
+    } else {
       navigate('/login');
     }
     // eslint-disable-next-line
-  }, []) 
-  
+  }, [])
+
   //[] means no of times to run
   const ref = useRef(null);//with the help of useRef we can give the reference to the component or div or element 
   const refClose = useRef(null);
@@ -29,7 +29,7 @@ const Notes = (props) => {
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({ id: currentNote._id, title: currentNote.title, description: currentNote.description, tag: currentNote.tag })
- 
+
   }
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value })//... it means ovewrite the content 
@@ -38,12 +38,12 @@ const Notes = (props) => {
     console.log("Updating the Notes", note)
     editNote(note.id, note.title, note.description, note.tag)
     refClose.current.click();
-    props.showAlert("Updated successfully","success")
+    props.showAlert("Updated successfully", "success")
   }
 
   return (
     <>
-      
+
       <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
       </button>
@@ -60,38 +60,59 @@ const Notes = (props) => {
                 <form>
                   <div className="mb-3 ">
                     <label htmlFor="title" className="form-label" minLength={5} required>Title</label>
-                    <input type="text" className="form-control border-dark bg-custom-purple   "  id="title" value={note.title} name="title" onChange={onChange}   />
+                    <textarea type="text" className="form-control border-dark bg-custom-purple   " id="title" value={note.title} name="title" onChange={onChange} />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="description" className="form-label" minLength={5} required>Description</label>
-                    <input type="text" className="form-control border-dark bg-custom-purple  "  id="description" value={note.description} name="description" onChange={onChange}   />
+                    <textarea type="text" className="form-control border-dark bg-custom-purple  " id="description" value={note.description} name="description" onChange={onChange} />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="tag" value={note.tag} className="form-label">Tag</label>
-                    <input type="text" className="form-control border-dark bg-custom-purple  "  id="tag" name="tag" value={note.tag} onChange={onChange} />
+                    <textarea type="text" className="form-control border-dark bg-custom-purple  " id="tag" name="tag" value={note.tag} onChange={onChange} />
                   </div>
                 </form>
               </div>
             </div>
             <div className="modal-footer border-dark ">
               <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" disabled={note.title.length<5||note.description.length<5} onClick={handleClick} className="btn btn-primary">Update Notes</button>
+              <button type="button" disabled={note.title.length < 5 || note.description.length < 5} onClick={handleClick} className="btn btn-primary">Update Notes</button>
             </div>
           </div>
         </div>
       </div>
       <div className="row my-3">
-        <div className="container">
-          {notes.length === 0 && "No notes to display"}
-        </div>
+        {notes.length === 0 ? (
+          <div className="container text-center my-5 no-notes-container">
+            <h1 className="quote animate__animated animate__fadeIn">
+              "Every great achievement begins with a blank page. Let your thoughts flow, and your ideas take shape. The first step is always the hardest, but it's also the most important. Start your journey now."
+            </h1>
+            <button
+              className="btn btn-gradient mt-4 animate__animated animate__pulse animate__infinite"
+              onClick={() => navigate('/AddNote')}
+            >
+              Add Your First Note
+            </button>
+          </div>
+        ) : null}
+
+
         {
           notes.map((note) => {
-            return <Noteitem key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert}/> /*note.title*/;
+            return <Noteitem key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert} /> /*note.title*/;
           })
         }
 
       </div>
-     
+      <div className="container">
+        {notes.length ? (<button
+          className="btn btn-gradient mt-4 animate__animated animate__pulse animate__infinite"
+          onClick={() => navigate('/AddNote')} // Adjust the navigation logic as needed
+        >
+          Add Note
+        </button>
+        ) : null}
+      </div>
+
 
     </>
   );

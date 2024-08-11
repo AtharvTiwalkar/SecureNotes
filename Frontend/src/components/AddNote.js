@@ -21,25 +21,29 @@ const AddNote = (props) => {
   }
 
   return (
+    <>
     <div>
-     <h2 className='my-3'>Add a Note</h2>
-      <form>
+     <h2 className='my-3'>Add a Note</h2> 
+      <form className='my-0'>
         <div className="mb-3 ">
           <label htmlFor="title" className="form-label" >Title</label>
-          <input type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="title" name="title" onChange={onChange} value={note.title} />
+          <textarea type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="title" name="title" onChange={onChange} value={note.title} />
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label" >Description</label>
-          <input type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="description" name="description" onChange={onChange} value={note.description}  />
+          <textarea type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="description" name="description" onChange={onChange} value={note.description}  />
+          <div id="emailHelp" className="form-text">Enter atleast 5 characters.</div>
         </div>
         <div className="mb-3">
           <label htmlFor="tag" className="form-label">Tag</label>
-          <input type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="tag" name="tag" onChange={onChange} value={note.tag}/>
+          <textarea type="text" autocomplete="off" className="form-control bg-custom-orange border-dark" id="tag" name="tag" onChange={onChange} value={note.tag}/>
         </div>
 
         <button type="submit" disabled={note.title.length<5||note.description.length<5} className="btn btn-primary" onClick={handleClick}>Add Note</button>
         </form>
     </div>
+    </>
+    
   )
 }
 
