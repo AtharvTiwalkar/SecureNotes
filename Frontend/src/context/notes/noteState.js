@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NoteContext from "./noteContext";
+
 //import { useState } from "react";
 const host = "https://inotebook-frontend-backend-5.onrender.com";
 const NoteState = (props) => {

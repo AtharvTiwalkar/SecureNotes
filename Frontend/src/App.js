@@ -2,7 +2,7 @@ import "./App.css";
 import About from "./components/About";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import NoteState from "./context/notes/noteState";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -29,7 +29,7 @@ function App() {
     <>
       <div className="bg-custom-orange min-vh-100">
         <NoteState>
-          <BrowserRouter>
+          <HashRouter>
             <Navbar />
             <Alert alert={alert} />
             <div className="container">
@@ -42,7 +42,7 @@ function App() {
                 <Route exact path="/signup" element={<SignUp showAlert={showAlert} />} ></Route>
               </Routes>
             </div>
-          </BrowserRouter>
+          </HashRouter>
         </NoteState>
       </div>
 
