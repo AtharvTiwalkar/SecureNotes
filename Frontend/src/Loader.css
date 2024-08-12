@@ -1,0 +1,33 @@
+/* Loader.css */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(40, 44, 52, 0.85); /* Matching the App-header background color with some transparency */
+    backdrop-filter: blur(10px); /* Increasing the blur effect for a more noticeable effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .spinner {
+    border: 8px solid rgba(250, 210, 196, 0.6); /* Using the orange shade from bg-custom-orange */
+    border-top: 8px solid #ff6b6b; /* Using the pink color from the gradient in btn-gradient */
+    border-radius: 50%;
+    width: 80px; /* Slightly larger spinner to match the app's scale */
+    height: 80px;
+    animation: spin 1.5s linear infinite; /* Slower spin for a smoother effect */
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

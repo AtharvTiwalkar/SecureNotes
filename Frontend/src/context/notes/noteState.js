@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NoteContext from "./noteContext";
+import Loader from "../../components/Loader";
 
 //import { useState } from "react";
 const host = "https://inotebook-frontend-backend-5.onrender.com";
@@ -19,10 +20,14 @@ const NoteState = (props) => {
   // }
   const notesInitial = [];
   const [notes, setNotes] = useState(notesInitial);
+//loader
+  const [loading, setLoading] = useState(false);
+
 
 
   //Get all Notes
   const getNotes = async () => {
+    await setLoading(true);
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: "GET",
       headers: {
@@ -34,6 +39,7 @@ const NoteState = (props) => {
     const json = await response.json();
     console.log(json);
     setNotes(json);
+    setLoading(false);
   };
   //Add a Note
   const addNote = async (title, description, tag) => {
@@ -105,6 +111,7 @@ const NoteState = (props) => {
     <NoteContext.Provider
       value={{ notes, addNote, deleteNote, getNotes, editNote }} /*value={{state,update}}*/
     >
+      {loading && <Loader />}
       {props.children}
     </NoteContext.Provider>
   );
