@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loader from "./Loader";
 
 const SignUp = (props) => {
+  const [loading, setLoading] = useState(false);
 
   const [credentials, setCredentials] = useState({ name: " ", email: " ", password: " ", cpassword: " " });
   let navigate = useNavigate();
@@ -14,6 +16,7 @@ const SignUp = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const { name, email, password } = credentials;
     const response = await fetch('https://inotebook-frontend-backend-5.onrender.com/api/auth/createuser', {
       method: "POST",
@@ -33,10 +36,13 @@ const SignUp = (props) => {
       console.log(json);
       props.showAlert(json.error,"danger")
     }
+    setLoading(false);
 
   }
   return (
+    
     <div onSubmit={handleSubmit}>
+      {loading && <Loader />}
       <form>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>
