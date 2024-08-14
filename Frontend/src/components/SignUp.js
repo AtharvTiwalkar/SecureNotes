@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from "./Loader";
+import { Link } from 'react-router-dom';
 
 const SignUp = (props) => {
   const [loading, setLoading] = useState(false);
@@ -63,6 +64,7 @@ const SignUp = (props) => {
           <input type="password" autocomplete="off" className="form-control bg-custom-orange border-dark" name="cpassword" onChange={onChange} id="cpassword" minLength={5} required />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
+        <Link className="btn btn-primary mx-3" to="/login" role="button">Login</Link>
       </form>
     </div>
   )

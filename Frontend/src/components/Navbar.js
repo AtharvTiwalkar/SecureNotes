@@ -39,10 +39,7 @@ function Navbar() {
         </ul>
         
         {!localStorage.getItem('token') ? (
-          <form className="d-flex" role="search">
-            <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
-            <Link className="btn btn-primary" to="/signup" role="button">SignUp</Link>
-          </form>
+          null
         ) : (
           <button className="btn btn-primary" onClick={handleLogout} role="button">LogOut</button>
         )}

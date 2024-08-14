@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from "./Loader";
-//loader
+import { Link } from 'react-router-dom';
 
 
 
@@ -42,7 +42,7 @@ const Login = (props) => {
         setLoading(false);
     }
     return (
-        
+    
         <div>
             {loading && <Loader />}
             <form onSubmit={handleSubmit}>
@@ -58,9 +58,11 @@ const Login = (props) => {
                 </div>
             
                 <button type="submit" className="btn btn-primary">Submit</button>
-
+                <Link className="btn btn-primary mx-3" to="/signup" role="button">SignUp</Link>
             </form>
         </div>
+
+        
     )
 }
 
